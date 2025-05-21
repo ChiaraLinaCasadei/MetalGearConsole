@@ -4,6 +4,8 @@
  */
 package metalgearconsole;
 
+import Models.Juego;
+
 /**
  *
  * @author chiar
@@ -14,7 +16,10 @@ public class MetalGearConsole {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        var juego = new Juego();
+        
+        juego.Iniciar();
     }
     
 }
