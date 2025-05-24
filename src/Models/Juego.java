@@ -1,19 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Models;
 
+import Helpers.GestorArchivos;
 import java.util.Scanner;
-
-/**
- *
- * @author chiar
- */
 public class Juego {
 
-    private int misionesCompletadas = 0;
-
+    private int misionesCompletadas = GestorArchivos.leerMisionesCompletadas();
+    
+    private MisionIntermedia misionInt = new MisionIntermedia (1);
+    private MisionFinal misionFinal = new MisionFinal ();
+    private Mapa mapa = new Mapa(7,7);
+    
+    // Mision 1: Matriz 7x7
+    // Mision 2: Matriz 9x9
+    // Mision 3: Pokemon
+    
     public void Iniciar() {
 
         // carga de misiones completadas desde archivo.
@@ -24,6 +24,17 @@ public class Juego {
         switch (opcionMenu) {
             case 1:
                 System.out.println("Iniciando misión...");
+                if (misionesCompletadas < 2){
+                    misionInt = new MisionIntermedia(misionesCompletadas);
+                    mapa = new Mapa(misionInt.Filas, misionInt.Columnas);
+                    mapa.CargarPersonajes();
+                    mapa.CargarItems();
+                    mapa.Mostrar(misionInt.Filas, misionInt.Columnas);
+                }
+                else{
+                    misionFinal = new MisionFinal();
+                }
+                
                 break;
             case 2:
                 System.out.println("Guardando estado...");
@@ -71,5 +82,5 @@ public class Juego {
         }
         
         return 0;
-    }
+    }    
 }
