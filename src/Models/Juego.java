@@ -26,13 +26,11 @@ public class Juego {
                 System.out.println("Iniciando misión...");
                 if (misionesCompletadas < 2){
                     misionInt = new MisionIntermedia(misionesCompletadas);
-                    mapa = new Mapa(misionInt.Filas, misionInt.Columnas);
-                    mapa.CargarPersonajes();
-                    mapa.CargarItems();
-                    mapa.Mostrar(misionInt.Filas, misionInt.Columnas);
+                    misionInt.iniciar();
                 }
                 else{
                     misionFinal = new MisionFinal();
+                    misionFinal.iniciar();
                 }
                 
                 break;
