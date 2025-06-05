@@ -17,4 +17,8 @@ public class Celda {
     public void SetPersonaje(Personaje _personaje){
         personaje = _personaje;
     }
+    
+    public String toString() {
+        return "Personaje: "+ Contenido + "(" + posicion.GetX()+ ", " + posicion.GetY() + ")";
+    }
 }
