@@ -47,16 +47,16 @@ public class Guardia extends Personaje implements Enemigo {
                     = !ValidacionesMovimiento.EsItem(celdaNuevaPosicion)
                     && !ValidacionesMovimiento.EsPuerta(celdaNuevaPosicion)
                     && !ValidacionesMovimiento.EsGuardia(celdaNuevaPosicion)
-                    && celdaNuevaPosicion.GetPersonaje() == null
-                    && celdaNuevaPosicion.Contenido.equals(" ");
+                    && celdaNuevaPosicion.getPersonaje() == null
+                    && celdaNuevaPosicion.getContenido().equals(" ");
 
             if (validacionesPosicion) {
 
-                posicionActual.SetPersonaje(null);
-                posicionActual.Contenido = " ";
+                posicionActual.setPersonaje(null);
+                posicionActual.setContenido(" ");
 
-                celdaNuevaPosicion.SetPersonaje(this);
-                celdaNuevaPosicion.Contenido = "*";
+                celdaNuevaPosicion.setPersonaje(this);
+                celdaNuevaPosicion.setContenido("*");
                 posicion.SetX(nuevoX);
                 posicion.SetY(nuevoY);
 

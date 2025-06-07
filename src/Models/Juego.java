@@ -10,7 +10,7 @@ public class Juego {
 
     // Mision 1: Matriz 7x7
     // Mision 2: Matriz 9x9
-    // Mision 3: Pokemon
+    // Mision 3: Batalla estilo Pokemon
     public void Iniciar() {
 
         // carga de misiones completadas desde archivo.
@@ -28,7 +28,7 @@ public class Juego {
                     mostrarMenu = misionInt.Iniciar();
                     break;
                 case 2:
-                    System.out.println("Ingresa el código de la misión que ganaste para guardar el progreso:");
+                    System.out.println("Ingresa el código de la última misión que ganaste para guardar el progreso:");
                     var codigoMision = scanner.nextLine();
                     GestorArchivos.EscribirArchivo(codigoMision);
                     break;
@@ -69,8 +69,9 @@ public class Juego {
         var opcionInvalida = true;
 
         System.out.println("========== Metal Gear Console ==========");
-        System.out.println("           Escape de la base            ");
-        System.out.println("----------------------------------------");
+        System.out.println("╔══════════════════════════════════════╗");
+        System.out.println("║         ESCAPE DE LA BASE        ║");
+        System.out.println("╚══════════════════════════════════════╝");
         System.out.println();
         System.out.print("Selecciona una opción: ");
         System.out.println();

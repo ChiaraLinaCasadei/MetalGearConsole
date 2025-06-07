@@ -9,13 +9,61 @@ public class Mapa {
     private int filas = 0;
     private int columnas = 0;
     private int mision;
-    public Snake snake = new Snake();
-    public Celda hangar = null;
-    public Celda puertaBloqueada = null;
-    public Celda[] ubicacionCeldaGuardias = new Celda[4];
-    public int cantidadGuardias = 0;
+    private Snake snake = new Snake();
+    private Celda hangar = null;
+    private Celda puertaBloqueada = null;
+    private Celda[] ubicacionCeldaGuardias = new Celda[4];
+    private int cantidadGuardias = 0;
 
     private Random random = new Random();
+
+    public Celda[][] getMapa() {
+        return mapa;
+    }
+
+    public void setMapa(Celda[][] mapa) {
+        this.mapa = mapa;
+    }
+
+    public Snake getSnake() {
+        return snake;
+    }
+
+    public void setSnake(Snake snake) {
+        this.snake = snake;
+    }
+
+    public Celda getHangar() {
+        return hangar;
+    }
+
+    public void setHangar(Celda hangar) {
+        this.hangar = hangar;
+    }
+
+    public Celda getPuertaBloqueada() {
+        return puertaBloqueada;
+    }
+
+    public void setPuertaBloqueada(Celda puertaBloqueada) {
+        this.puertaBloqueada = puertaBloqueada;
+    }
+
+    public Celda[] getUbicacionCeldaGuardias() {
+        return ubicacionCeldaGuardias;
+    }
+
+    public void setUbicacionCeldaGuardias(Celda[] ubicacionCeldaGuardias) {
+        this.ubicacionCeldaGuardias = ubicacionCeldaGuardias;
+    }
+
+    public int getCantidadGuardias() {
+        return cantidadGuardias;
+    }
+
+    public void setCantidadGuardias(int cantidadGuardias) {
+        this.cantidadGuardias = cantidadGuardias;
+    }
 
     // Crea el mapa según las filas y columnas, y lo llena en base a la misión, que deduce por la cantidad de filas y columnas.
     public Mapa(int _filas, int _columnas) {
@@ -32,10 +80,10 @@ public class Mapa {
         }
 
         if (mision == 1) {
-            mapa[0][3].Contenido = "H"; // Hangar
+            mapa[0][3].setContenido("H"); // Hangar
             hangar = mapa[0][3];
         } else {
-            mapa[1][8].Contenido = "P"; // Puerta Bloqueada
+            mapa[1][8].setContenido("P"); // Puerta Bloqueada
             puertaBloqueada = mapa[1][8];
         }
     }
@@ -63,8 +111,8 @@ public class Mapa {
                 col = columnas - 1;
             }
             mapa[mapa.length - 1][col] = new Celda("S", new Posicion(col, mapa.length - 1));
-            snake.posicion = mapa[mapa.length - 1][col].posicion;
-            mapa[mapa.length - 1][col].SetPersonaje(snake);
+            snake.posicion = mapa[mapa.length - 1][col].getPosicion();
+            mapa[mapa.length - 1][col].setPersonaje(snake);
         } else {
             for (int i = 0; i < cantidad; i++) {
 
@@ -94,13 +142,13 @@ public class Mapa {
             int filaAleatoria = random.nextInt(filas);
             int columnaAleatoria = random.nextInt(columnas);
 
-            if (mapa[filaAleatoria][columnaAleatoria].Contenido == " ") {
+            if (mapa[filaAleatoria][columnaAleatoria].getContenido() == " ") {
                 var guardia = new Guardia();
-                guardia.posicion = mapa[filaAleatoria][columnaAleatoria].posicion;
+                guardia.posicion = mapa[filaAleatoria][columnaAleatoria].getPosicion();
 
                 if (simbolo == "*" && !EnPerimetroSnake(guardia.posicion, 2)) {
                     mapa[filaAleatoria][columnaAleatoria] = new Celda(simbolo, new Posicion(columnaAleatoria, filaAleatoria));
-                    mapa[filaAleatoria][columnaAleatoria].SetPersonaje(guardia);
+                    mapa[filaAleatoria][columnaAleatoria].setPersonaje(guardia);
                     return mapa[filaAleatoria][columnaAleatoria];
                 } else if (simbolo != "*") { //Item
                     mapa[filaAleatoria][columnaAleatoria] = new Celda(simbolo, new Posicion(columnaAleatoria, filaAleatoria));
@@ -160,10 +208,10 @@ public class Mapa {
         for (int i = 0; i < filas; i++) {
             // Contenido de la fila
             for (int j = 0; j < columnas; j++) {
-                if (mapa[i][j].Contenido == "C4") {
-                    System.out.print("|  " + mapa[i][j].Contenido + " ");
+                if (mapa[i][j].getContenido() == "C4") {
+                    System.out.print("|  " + mapa[i][j].getContenido() + " ");
                 } else {
-                    System.out.print("|  " + mapa[i][j].Contenido + "  ");
+                    System.out.print("|  " + mapa[i][j].getContenido() + "  ");
                 }
             }
             System.out.println("|");
@@ -180,11 +228,11 @@ public class Mapa {
     public void MoverGuardias() {
 
         for (int i = 0; i < cantidadGuardias; i++) {
-            var x = ubicacionCeldaGuardias[i].posicion.GetX();
-            var y = ubicacionCeldaGuardias[i].posicion.GetY();
+            var x = ubicacionCeldaGuardias[i].getPosicion().GetX();
+            var y = ubicacionCeldaGuardias[i].getPosicion().GetY();
 
             System.out.println("Se encontro guardia en posicion: " + "fila:" + y + " columna:" + x);
-            var guardia = mapa[y][x].GetPersonaje();
+            var guardia = mapa[y][x].getPersonaje();
             if (guardia != null) {
                 var respMovimiento = guardia.Mover("", mapa);
                 ubicacionCeldaGuardias[i] = respMovimiento.nuevaPosicionPersonaje;

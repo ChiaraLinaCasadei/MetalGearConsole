@@ -1,24 +1,41 @@
 package Models;
+
 public class Celda {
-    
-    public String Contenido = " ";
+
+    private String Contenido = " ";
     private Personaje personaje = null;
-    public Posicion posicion = new Posicion (0,0);
-    
-    
-    public Celda (String _contenido, Posicion _posicion){
+    private Posicion posicion = new Posicion(0, 0);
+
+    public Celda(String _contenido, Posicion _posicion) {
         Contenido = _contenido;
         posicion = _posicion;
     }
-    public Personaje GetPersonaje(){
+
+    public Personaje getPersonaje() {
         return personaje;
     }
-    
-    public void SetPersonaje(Personaje _personaje){
+
+    public void setPersonaje(Personaje _personaje) {
         personaje = _personaje;
     }
-    
+
+    public String getContenido() {
+        return Contenido;
+    }
+
+    public void setContenido(String Contenido) {
+        this.Contenido = Contenido;
+    }
+
+    public Posicion getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(Posicion posicion) {
+        this.posicion = posicion;
+    }
+
     public String toString() {
-        return "Personaje: "+ Contenido + "(" + posicion.GetX()+ ", " + posicion.GetY() + ")";
+        return "Personaje: " + Contenido + "(" + posicion.GetX() + ", " + posicion.GetY() + ")";
     }
 }

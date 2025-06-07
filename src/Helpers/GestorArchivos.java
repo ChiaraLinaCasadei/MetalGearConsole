@@ -1,6 +1,5 @@
 package Helpers;
 
-
 import java.io.*;
 import java.nio.file.*;
 
@@ -14,19 +13,19 @@ public class GestorArchivos {
 
             String linea = reader.readLine();
             reader.close();
-            
+
             // El archivo está vacío al jugar por primera vez.
             // O si se jugó solo la primer misión y no ganó.
-            if (linea == null){
-                return "NOVICTORIESYET"; 
+            if (linea == null) {
+                return "NOVICTORIESYET";
             }
-            
+
             return linea;
-            
+
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }
-        
+
         return misionesCompletadas;
     }
 
