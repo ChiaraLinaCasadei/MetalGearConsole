@@ -46,6 +46,7 @@ public class MisionIntermedia extends Mision {
         boolean juegoActivo = true;
 
         while (juegoActivo) {
+                       
             String entrada = scanner.nextLine();
             entrada = entrada.toLowerCase();
             ResponseMovimiento movResp;
@@ -71,6 +72,7 @@ public class MisionIntermedia extends Mision {
             }
             mapa.mapa = movResp.mapaActualizado;
             mapa.MoverGuardias();
+            mapa.LimpiarConsola();
             mapa.Mostrar(filas, columnas);
 
             if (EsDerrota()) {
@@ -87,6 +89,8 @@ public class MisionIntermedia extends Mision {
                 scanner.nextLine();
                 break;
             }
+            
+            
 
         }
 

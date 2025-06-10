@@ -123,13 +123,6 @@ public class Mapa {
         }
     }
 
-    private void moverPersonaje(Personaje personaje) {
-
-        /*if (personaje. == "S"){
-            
-        }*/
-    }
-
     // Sirve para colocar inicialemente los guardias y los items
     // Los guardias no pueden colocarse inicialmente a menos de 2 celdas de Snake
     // Los guardias no pueden colocarse donde está otro personaje.
@@ -224,14 +217,19 @@ public class Mapa {
         }
 
     }
-
+    
+    public void LimpiarConsola() {
+    for (int i = 0; i < 50; i++) {
+        System.out.println();
+    }
+}
     public void MoverGuardias() {
 
         for (int i = 0; i < cantidadGuardias; i++) {
             var x = ubicacionCeldaGuardias[i].getPosicion().GetX();
             var y = ubicacionCeldaGuardias[i].getPosicion().GetY();
 
-            System.out.println("Se encontro guardia en posicion: " + "fila:" + y + " columna:" + x);
+            //System.out.println("Se encontro guardia en posicion: " + "fila:" + y + " columna:" + x);
             var guardia = mapa[y][x].getPersonaje();
             if (guardia != null) {
                 var respMovimiento = guardia.Mover("", mapa);
